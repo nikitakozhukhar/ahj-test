@@ -16,9 +16,9 @@ export default function vallidateCardNumber(cardNumber) {
   const calcControleNum = 10 - ((sum - controleNum) % 10);
 
   if (controleNum === calcControleNum) {
-    console.log('valid')
+    return 'valid'
   } else {
-    console.log('invalid')
+    return 'invalid'
   }
 }
 
