@@ -32,11 +32,15 @@ form.addEventListener('submit', e => {
 
   if (vallidateCardNumber(input.value) === 'invalid') {
     input.style.borderColor = '#ff00043d';
-    input.style.backgroundColor = '#ff00043d'
+    input.style.backgroundColor = '#ff00043d';
+    input.classList.remove('valid')
+    input.classList.add('invalid')
   }
   if (vallidateCardNumber(input.value) === 'valid') {
     input.style.borderColor = '#25ff005c';
     input.style.backgroundColor = '#25ff005c';
+    input.classList.remove('invalid')
+    input.classList.add('valid')
   }
 
   if (input.value === '') {
