@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 jest.setTimeout(30000);
 
-describe('cards and form', () => {
+describe('cards validator form', () => {
   let browser;
   let page;
 
@@ -21,7 +21,7 @@ describe('cards and form', () => {
     await page.waitForSelector('img')
   });
 
-  test('form input should add .valid class if card number is valid', async () => {
+  test('form input should add .LAPassed and .valid class if card number is valid', async () => {
     
     await page.goto('http://localhost:8080');
 
@@ -35,12 +35,23 @@ describe('cards and form', () => {
     await submit.click();
 
     await page.waitForSelector('.valid');
+    await page.waitForSelector('.LAPassed');
   });
 
-  test('cards image should render on page start', async () => {
+  test('form input should add .LAFaled and .invalid class if card number is valid', async () => {
     await page.goto('http://localhost:8080');
 
-    await page.waitForSelector('img')
+    await page.waitForSelector('.form-container');
+
+    const form = await page.$('.form-container');
+    const input = await form.$('.input-field');
+    const submit = await form.$('.validate-button');
+
+    await input.type('471666752645466');
+    await submit.click();
+
+    await page.waitForSelector('.invalid');
+    await page.waitForSelector('.LAFaled');
   });
 
   afterEach(async () => {

@@ -17,8 +17,12 @@ inputField.addEventListener('input', () => {
       const element = document.querySelector(`.${t}`);
      
       if (element) {
+        // debugger;
         element.style.opacity = t === type ? '1' : '0.3';
       }
+      // if (element.classList.contains(`${t}`) || type === `${t}`) {
+        
+      // }
     })
   }
 })
@@ -33,14 +37,20 @@ form.addEventListener('submit', e => {
   if (vallidateCardNumber(input.value) === 'invalid') {
     input.style.borderColor = '#ff00043d';
     input.style.backgroundColor = '#ff00043d';
-    input.classList.remove('valid')
-    input.classList.add('invalid')
+    input.classList.remove('valid');
+    input.classList.add('invalid');
+
+    input.classList.remove('LAPassed');
+    input.classList.add('LAFaled');
   }
   if (vallidateCardNumber(input.value) === 'valid') {
     input.style.borderColor = '#25ff005c';
     input.style.backgroundColor = '#25ff005c';
-    input.classList.remove('invalid')
-    input.classList.add('valid')
+    input.classList.remove('invalid');
+    input.classList.add('valid');
+
+    input.classList.remove('LAFaled');
+    input.classList.add('LAPassed');
   }
 
   if (input.value === '') {
